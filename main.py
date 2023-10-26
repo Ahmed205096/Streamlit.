@@ -1,5 +1,4 @@
 import streamlit as st , pandas as pd 
-import openpyxl
 
 
 
@@ -27,7 +26,7 @@ def auth(user , passw):
 
 
 def is_user(global_user , global_pass):
-    df = pd.read_excel('pass.xlsx')
+    df = pd.read_csv('pass.xlsx')
 
 
 
