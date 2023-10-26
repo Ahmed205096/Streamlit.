@@ -26,7 +26,7 @@ def auth(user , passw):
 
 
 def is_user(global_user , global_pass):
-    df = pd.read_csv('pass.xlsx')
+    df = pd.read_csv('pass.csv')
 
 
 
