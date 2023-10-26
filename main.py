@@ -1,29 +1,47 @@
-import streamlit as st
+import streamlit as st , pandas as pd
+
 
 
 st.markdown('''
-
 <style>
-            
 input,label{
-    direction : RTL;
+    direction:RTL;
 }
             
 .st-emotion-cache-10trblm{
-        text-align : center;
+     text-align:center;       
 }
-            
 </style>
-
-''' , unsafe_allow_html=True)
-
-st.header('تسجيل الدخول')
+''',unsafe_allow_html=True)
 
 
-login_form = st.form('Login Form')
+st.title('')
+st.title('تسجيل الدخول')
 
-with login_form:
-    st.text_input(label='ادخل اسم المستخدم' , placeholder='اسم المستخدم')
-    st.text_input(label='ادخل كلمة المرور' , placeholder='كلمة المرور' , type='password')
 
-    st.form_submit_button(label='دخول',use_container_width=True)
+def auth(user , passw):
+
+
+    is_user(user , passw)
+
+
+def is_user(global_user , global_pass):
+    df = pd.read_excel('pass.xlsx')
+
+
+
+    if len(df[(df['user'].astype(str) == str(global_user))& (df['pass'].astype(str) == str(global_pass))]) > 0:
+        st.write('OK')
+    else:
+        st.write('NO')
+    
+
+
+
+
+
+with st.form('Form1'):
+    user = st.text_input('ادخل اسم المستخدم', placeholder='اسم المستخدم')
+    password = st.text_input('ادخل كلمة المرور',placeholder='كلمة المرور')
+
+    st.form_submit_button('دخول',use_container_width=True,on_click=auth(user , password))
